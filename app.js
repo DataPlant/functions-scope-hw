@@ -81,3 +81,5 @@ function sumDigits(num){
     return total;
 }
 console.log(sum2);
+
+/////////////////////PYTHAGORAS
