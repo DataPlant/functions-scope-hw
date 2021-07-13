@@ -83,3 +83,134 @@ function sumDigits(num){
 console.log(sum2);
 
 /////////////////////PYTHAGORAS
+const sideC = calculateSide(8, 6);
+function calculateSide(sideA, sideB){
+    let sideC = Math.sqrt(sideA**2 +sideB**2)
+    return sideC;
+}
+console.log(sideC);
+/////////////////////PRIME NUMBERS
+function checkPrime(num){
+    if(num === 2){
+        return true
+    }
+    else if(num > 2){
+        for(let i = 2; i<num; i++){
+            if(num % i !== 0){
+                return true
+            }
+            else if(num === i**2){
+                return false
+            }
+            else{
+                return false
+            }
+        }
+    }
+    else{
+        return false
+    }
+}
+function printPrimes(num){
+    for(let i= 1; i<=num; i++){
+        let result = checkPrime(i);
+        if(result === true){
+            console.log(i)
+        }
+    }
+}
+
+printPrimes(97);
+/////////////////////INSERT DASH
+// const numWithDashes = insertDash(454793);
+// function insertDash(num){
+//     let strNum = num.toString();
+//     let splitNum = []
+//     for(let i=0; i<strNum.length; i++){
+//         splitNum.push(strNum.charAt(i))
+//     }
+//     for(let i=1; i<splitNum.length; i++){
+//         if(isOdd(splitNum[i]) === true && isOdd(splitNum[--i]) === true){
+//             splitNum.splice(i, 0, '-');
+//         }
+//     }
+//     splitNum.join()
+//     console.log(splitNum)
+//     return splitNum
+// }
+// function isOdd(num){
+//     if(num%2 === 0){
+//         return false;
+//     }
+//     else{
+//         return true;
+//     }
+// }
+// console.log(numWithDashes);
+////////////////////////////// reverse string
+function reverseString(stringName){
+    let reversedWord= '';
+    for(let i=stringName.length; i>=0; --i){
+        reversedWord += stringName.charAt(i)
+    }
+    console.log(reversedWord)
+}
+reverseString('apples');
+////////////////////////////// back to palindrome
+function newPali(word){
+    const lowWord = word.toLowerCase().split('');
+    const revWord = lowWord.reverse();
+    spaceDeleter(lowWord);
+    spaceDeleter(revWord);
+    punctDeleter(lowWord);
+    punctDeleter(revWord);
+    console.log(revWord)
+    if(lowWord === revWord){
+        console.log("The word is a palindrome")
+    }
+    else{
+        console.log("The word is not a palindrome")
+    }
+}
+function spaceDeleter(word){
+    for(let i=0; i<word.length; i++){
+        if(word[i] === " "){
+            word.splice(i,1);
+            i--; //this would balance the index shifting from the splice i think
+        }
+    }
+}
+function punctDeleter(word){
+    for(let i=0; i<word.length; i++){
+        if(word[i] === "?"||word[i] === "!"||word[i] === "."||word[i] === ","||word[i] === ":"||word[i] === '"'){
+            word.splice(i,1);
+            i--; //this would balance the index shifting from the splice i think
+        }
+    }
+}
+newPali('Sit on a potato pan Otis')
+newPali("Cigar? Toss it in a can! It is so tragic.")
+
+function wordPali(word){
+    let lowWord = word.toLowerCase().split('');
+    let revWord = lowWord;
+    punctDeleter(lowWord);
+    punctDeleter(revWord);
+    lowWord = lowWord.join('').split(' ')
+    revWord = revWord.join('').split(' ').reverse()
+    
+    console.log(lowWord)
+    console.log(revWord)
+    truthCounter = 0
+    for(let i=0; i<lowWord.length; i++){
+        if(lowWord[i] !== revWord[i]){
+            console.log("The phrase is NOT a palindrome")
+            truthCounter -= 5
+        }
+        truthCounter++;
+    }
+    if(truthCounter === lowWord.length){
+        console.log("The phrase is a palindrome")
+    }
+}
+wordPali('"Son, I am able," she said. "Though you scare me, watch!" said I, "Beloved," I said, "watch me scare you!" Though, said she: "able am I, son."')
